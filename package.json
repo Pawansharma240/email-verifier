@@ -1,0 +1,14 @@
+{
+  "name": "email-verifier",
+  "version": "1.0.0",
+  "main": "verifyEmail.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "smtp-client": "^0.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
