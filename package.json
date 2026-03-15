@@ -1,7 +1,7 @@
 {
   "name": "email-verifier",
   "version": "1.0.0",
-  "main": "verifyEmail.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "jest"
