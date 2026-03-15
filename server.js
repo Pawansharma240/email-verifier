@@ -3,9 +3,7 @@ const verifyEmail = require("./verifyEmail");
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Email Verifier API Running");
-});
+app.use(express.static("public"));
 
 app.get("/verify", async (req, res) => {
   const email = req.query.email;

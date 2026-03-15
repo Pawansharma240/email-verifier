@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Email Verifier</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f6f8;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+text-align:center;
+width:350px;
+}
+
+input{
+width:90%;
+padding:10px;
+margin-top:10px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+background:#007bff;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+#result{
+margin-top:20px;
+font-weight:bold;
+}
+
+.valid{
+color:green;
+}
+
+.invalid{
+color:red;
+}
+
+.suggestion{
+color:orange;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Email Verifier</h2>
+
+<input id="email" placeholder="Enter email">
+
+<br>
+
+<button onclick="verifyEmail()">Verify</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+async function verifyEmail(){
+
+const email = document.getElementById("email").value;
+
+const resultDiv = document.getElementById("result");
+
+resultDiv.innerHTML="Checking...";
+
+const res = await fetch(`/verify?email=${email}`);
+
+const data = await res.json();
+
+if(data.result==="valid"){
+resultDiv.innerHTML=`<span class="valid">✅ Valid Email</span>`;
+}
+else{
+
+resultDiv.innerHTML=`<span class="invalid">❌ Invalid Email</span>`;
+
+if(data.didYouMean){
+resultDiv.innerHTML += `<br><span class="suggestion">Did you mean: ${data.didYouMean}</span>`;
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
